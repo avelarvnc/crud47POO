@@ -52,3 +52,19 @@ BEGIN
 	INSERT INTO produto (nome, valorUnitario, idCategoria) VALUES (_nome, _valor, @idCategoria);
 
 END //
+
+DELIMITER //
+CREATE PROCEDURE psListarProduto
+(
+	IN _nome		VARCHAR(100)
+)
+BEGIN
+SELECT 
+	P.idProduto,
+    P.nome AS nomeProduto,
+    P.valorUnitario,
+    C.nome AS nomeCategoria
+FROM produto P 
+JOIN categoria C ON C.idCategoria = P.idCategoria
+WHERE P.nome LIKE CONCAT(_nome,'%');
+END //
