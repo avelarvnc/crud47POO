@@ -44,6 +44,21 @@
             return $data;
         }
 
+        public function excluirProduto($_id)
+        {
+            include("assets/db/conn.php");
+            $sql = "CALL pdProduto(:id)";
+
+            $data = [
+                'id' => $_id
+            ];
+
+            $statement = $conn->prepare($sql);
+            $statement->execute($data);
+
+            return true;
+        }
+
     }
 
 ?>

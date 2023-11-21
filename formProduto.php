@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="assets/css/estilo.css" rel="stylesheet">
+    <script src="assets/js/util.js"></script>
 </head>
 <body>
 
@@ -64,7 +65,7 @@
                             <td> " . $item["nomeProduto"] . "</td>
                             <td> " . $item["valorUnitario"] . "</td>
                             <td> " . $item["nomeCategoria"] . "</td>
-                            <td> <a href='excluirProduto.php?pid=" . $item["idProduto"] .  "'>Excluir</a> </td>
+                            <td> <a href='excluirProduto.php?pid=" . $item["idProduto"] .  "' onClick='return confirmar()'>Excluir</a> </td>
                         </tr>
                    ";
                 }

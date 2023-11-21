@@ -68,3 +68,12 @@ FROM produto P
 JOIN categoria C ON C.idCategoria = P.idCategoria
 WHERE P.nome LIKE CONCAT(_nome,'%');
 END //
+
+DELIMITER //
+CREATE PROCEDURE pdProduto
+(
+	IN 	_id		INT
+)
+BEGIN
+	DELETE FROM produto WHERE idProduto = _id;
+END //
