@@ -66,6 +66,7 @@
                             <td> " . $item["valorUnitario"] . "</td>
                             <td> " . $item["nomeCategoria"] . "</td>
                             <td> <a href='excluirProduto.php?pid=" . $item["idProduto"] .  "' onClick='return confirmar()'>Excluir</a> </td>
+                            <td> <a href='editarProduto.php?pid=" . $item["idProduto"] .  "'>Editar</a> </td>
                         </tr>
                    ";
                 }

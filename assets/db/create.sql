@@ -77,3 +77,33 @@ CREATE PROCEDURE pdProduto
 BEGIN
 	DELETE FROM produto WHERE idProduto = _id;
 END //
+
+DELIMITER //
+CREATE PROCEDURE psProduto
+(
+	IN _id		INT
+)
+BEGIN
+SELECT 
+	P.idProduto,
+    P.nome AS nomeProduto,
+    P.valorUnitario,
+    C.nome AS nomeCategoria
+FROM produto P 
+JOIN categoria C ON C.idCategoria = P.idCategoria
+WHERE P.idProduto = _id;
+END //
+
+DELIMITER //
+CREATE PROCEDURE puProduto
+(
+	IN	_id			INT,
+    IN	_nome		VARCHAR(100),
+    IN _valor		DECIMAL(10.2)
+)
+BEGIN
+	UPDATE produto
+    	SET nome = _nome,
+        	valorUnitario = _valor
+    WHERE idProduto = _id;
+END //
