@@ -76,6 +76,8 @@
             </table>
 
     </section>
+
+    <a href="areaRestrita.php?nome=vanessa">Voltar</a>
     
 </body>
 </html>

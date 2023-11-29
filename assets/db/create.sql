@@ -13,6 +13,13 @@ CREATE TABLE produto
     CONSTRAINT fkProdutoCategoria FOREIGN KEY (idCategoria) REFERENCES categoria (idCategoria)
 );
 
+CREATE TABLE usuario
+(
+	idUsuario			INT AUTO_INCREMENT PRIMARY KEY,
+    usuario				VARCHAR(100),
+    senha				VARCHAR(100)
+);
+
 -- INSERT INTO produto (nome, valorUnitario, idCategoria)
 -- VALUES ('Pão de Queijo', 5.99, 1), ('Misto Quente', 7.99, 1)
 
@@ -106,4 +113,24 @@ BEGIN
     	SET nome = _nome,
         	valorUnitario = _valor
     WHERE idProduto = _id;
+END //
+
+DELIMITER //
+CREATE PROCEDURE piUsuario
+(
+	IN	_usuario	VARCHAR(100),
+    IN	_senha		VARCHAR(100)
+)
+BEGIN
+	INSERT INTO usuario (usuario, senha) VALUES (_usuario, _senha);
+END //
+
+DELIMITER //
+CREATE PROCEDURE psLoginUsuario
+(
+	IN	_usuario		VARCHAR(100),
+    IN	_senha			VARCHAR(100)
+)
+BEGIN
+	SELECT * FROM Usuario WHERE usuario = _usuario AND senha = _senha;
 END //
