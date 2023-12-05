@@ -10,10 +10,28 @@
     <h1>Área restrita</h1>
 
     <?php
-        session_start();
-        echo "<p>Olá, " . $_SESSION["nome"] . "</p>";
+        ////Verificação de variável de sessão
+        // session_start();
+        // if (isset($_SESSION["nome"]))
+        // {
+        //     echo "<p>Olá, " . $_SESSION["nome"] . "</p>";
+        // }
+        // else {
+        //     header("Location: acesso.php");
+        // }
+
+        if (isset($_COOKIE["nome"]))
+        {
+            echo "<p>Olá, " . $_COOKIE["nome"] . "</p>";
+        }
+        else {
+            header("Location: acesso.php");
+        }
+        
+        
     ?>
 
     <a href="formProduto.php">Produtos</a>
+    <a href="sair.php">Sair</a>
 </body>
 </html>

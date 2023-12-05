@@ -38,9 +38,15 @@
                     echo "<p>Usuário e/ou senha incorreto(s).</p>";                   
                 }
                 else {
-                    session_start();
-                    $_SESSION["nome"] = $u->getUsuario();
-                    header("Location: areaRestrita.php"); //redirecionando para outra página
+                    ////Utilizando dados em sessão
+                    // session_start();
+                    // $_SESSION["nome"] = $u->getUsuario();
+                    // header("Location: areaRestrita.php"); //redirecionando para outra página
+
+                    $cookieName = "nome";
+                    $cookieValue = $u->getUsuario();
+                    setcookie($cookieName, $cookieValue, time() + 86400, "/");
+                    header("Location: areaRestrita.php");
                 }
             }
             

@@ -17,6 +17,18 @@
     <h1>Produtos</h1>
     <h2>Novo produto</h2>
 
+    <?php
+        session_start();
+        if (isset($_SESSION["nome"]))
+        {
+            echo "<p>Olá, " . $_SESSION["nome"] . "</p>";
+        }
+        else {
+            header("Location: acesso.php");
+        }
+        
+    ?>
+
     <form method="POST">
 
         <label>Nome:</label>
