@@ -47,30 +47,46 @@
 
         public function inserirProduto()
         {
-            include("assets/db/conn.php");
-            $sql = "CALL piProduto(:nome, :valor, :categoria)";
+            try 
+            {
+                include("assets/db/conn.php");
+                $sql = "CALL piProduto(:nome, :valor, :categoria)";
+    
+                $data = [
+                    'nome' => $this->nome,
+                    'valor' => $this->valor,
+                    'categoria' => $this->categoria
+                ];
+    
+                $statement = $conn->prepare($sql);
+                $statement->execute($data);
+    
+                return true;
 
-            $data = [
-                'nome' => $this->nome,
-                'valor' => $this->valor,
-                'categoria' => $this->categoria
-            ];
-
-            $statement = $conn->prepare($sql);
-            $statement->execute($data);
-
-            return true;
+            } 
+            catch (Exception $e) 
+            {
+                return false;
+            }
+           
 
         }
 
         public function listarProduto()
         {
-            include("assets/db/conn.php");
+           try {
+                include("assets/db/conn.php");
 
-            $sql = "CALL psListarProduto('')";
-            $data = $conn->query($sql)->fetchAll();
+                $sql = "CALL psListarProduto('')";
+                $data = $conn->query($sql)->fetchAll();
 
-            return $data;
+                return $data;
+           } 
+           catch (Exception $e) 
+           {
+               return false;
+           }
+            
 
       
         }

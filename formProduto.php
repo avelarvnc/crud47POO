@@ -18,14 +18,14 @@
     <h2>Novo produto</h2>
 
     <?php
-        session_start();
-        if (isset($_SESSION["nome"]))
-        {
-            echo "<p>Olá, " . $_SESSION["nome"] . "</p>";
-        }
-        else {
-            header("Location: acesso.php");
-        }
+        // session_start();
+        // if (isset($_SESSION["nome"]))
+        // {
+        //     echo "<p>Olá, " . $_SESSION["nome"] . "</p>";
+        // }
+        // else {
+        //     header("Location: acesso.php");
+        // }
         
     ?>
 
@@ -59,33 +59,46 @@
 
     <section class="lista">
 
-            <table>
-                <tr>
-                    <th>Nome</th>
-                    <th>Valor</th>
-                    <th>Categoria</th>
-                </tr>
-
+ 
             <?php
 
                 $p = new Produto(); //criar objeto da classe Produto
                 $lista = $p->listarProduto();
 
-                foreach ($lista as $item) {
-                   echo "
+                if ($lista != false)
+                {
+
+                    echo "
+                        <table>
                         <tr>
-                            <td> " . $item["nomeProduto"] . "</td>
-                            <td> " . $item["valorUnitario"] . "</td>
-                            <td> " . $item["nomeCategoria"] . "</td>
-                            <td> <a href='excluirProduto.php?pid=" . $item["idProduto"] .  "' onClick='return confirmar()'>Excluir</a> </td>
-                            <td> <a href='editarProduto.php?pid=" . $item["idProduto"] .  "'>Editar</a> </td>
-                        </tr>
-                   ";
+                            <th>Nome</th>
+                            <th>Valor</th>
+                            <th>Categoria</th>
+                        </tr>";
+    
+
+                    foreach ($lista as $item) {
+                        echo "
+                             <tr>
+                                 <td> " . $item["nomeProduto"] . "</td>
+                                 <td> " . $item["valorUnitario"] . "</td>
+                                 <td> " . $item["nomeCategoria"] . "</td>
+                                 <td> <a href='excluirProduto.php?pid=" . $item["idProduto"] .  "' onClick='return confirmar()'>Excluir</a> </td>
+                                 <td> <a href='editarProduto.php?pid=" . $item["idProduto"] .  "'>Editar</a> </td>
+                             </tr>
+                        ";
+                     }
+
+                    echo " </table>";                     
+                
+                }
+                else {
+                    echo "<p>Ocorreu um erro inesperado. Tente novamente mais tarde.</p>";
                 }
 
             ?>
 
-            </table>
+           
 
     </section>
 
